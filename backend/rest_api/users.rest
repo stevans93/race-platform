@@ -1,0 +1,22 @@
+### GET USER BY ID
+GET http://localhost:4000/api/users/664f3190ff9ad4efb30ef0d6
+Content-Type: application/json
+
+### GET ALL USERS
+GET http://localhost:4000/api/users
+Content-Type: application/json
+
+### DELETE USER
+DELETE http://localhost:4000/api/users/664f31beff9ad4efb30ef0df
+Content-Type: application/json
+
+### UPDATE USER
+PUT http://localhost:4000/api/users/664ddd9fd5121a0cef9cb5e9
+Content-Type: application/json
+Authorization:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjRkZGQ5ZmQ1MTIxYTBjZWY5Y2I1ZTkiLCJmaXJzdE5hbWUiOiJTdGV2YW4iLCJsYXN0TmFtZSI6IlN0ZXZhbm92aWMiLCJlbWFpbCI6InN0ZXZhbnM5M0BnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTcxNjU2MjI2NiwiZXhwIjoxNzE2NjQ4NjY2fQ.WwwHBQITSZ-SKpAliQYPzHFXNK-K8WBA-WUYJkrkbbw"
+{
+    "firstName": "Stevan5",
+    "lastName": "Stevanovic5",
+    "email": "stevans935@gmail.com",
+    "password": "312392"
+}
