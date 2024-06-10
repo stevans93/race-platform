@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken');
-const { tokenExpired } = require('./messages');
+const { tokenExpired, tokenNotProvided, invalidToken } = require('./messages');
 const { JWT_KEY, JWT_EXPIRES_IN } = require('../config/config');
+const UsersModel = require("../models/users");
+const { BadRequest } = require('./errors');
 
 function createToken(payload) {
     return new Promise((resolve, reject) => {
@@ -8,20 +10,35 @@ function createToken(payload) {
         if (err) {
           reject(err)
         }
+
         resolve(token)
       })
     })
 }
 
-async function verifyToken(token) {
-    try {
-        const decode = jwt.verify(token, JWT_KEY);
-
-        return decode
-    } catch (error) {
-        throw new Error(tokenExpired)
-    }
-}
+const verifyToken = async (req, res, next) => {
+  try {
+      const token = req.header('Authorization');
+      
+      if (!token) {
+          throw new BadRequest(tokenNotProvided);
+      }
+      
+      const decoded = jwt.verify(token, JWT_KEY);
+      
+      const user = await UsersModel.findById(decoded._id);
+      
+      if (!user) {
+          throw new BadRequest(invalidToken);
+      }
+      
+      req.user = user;
+      
+      next();
+  } catch (error) {
+      return res.status(401).json({ message: tokenExpired });
+  }
+};
 
 module.exports = {
     createToken,

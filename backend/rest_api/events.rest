@@ -1,0 +1,38 @@
+### CREATE EVENT
+POST http://localhost:4000/api/events/create
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjRmMzE5MGZmOWFkNGVmYjMwZWYwZDYiLCJmaXJzdE5hbWUiOiJTdGV2YW4yIiwibGFzdE5hbWUiOiJTdGV2YW5vdmljMiIsImVtYWlsIjoic3RldmFuczkzMkBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTcxNjU3NDE5MiwiZXhwIjoxNzE2NjYwNTkyfQ.83CBwkl8aqM9DN6z77JpUOLpMjl4WdYOdiPnsRMfopM
+{
+    "name": "Trka Beljanica 2",
+    "image": "Slika 2",
+    "banner": "Banner 2",
+    "date": "2023-08-01T00:00:00.000Z",
+    "price": "722",
+    "info": "Info Info Info 2",
+    "userId": "664f3190ff9ad4efb30ef0d6"
+}
+
+### GET EVENT BY ID
+GET http://localhost:4000/api/events/6650ee922eb13746cac5f27c
+Content-Type: application/json
+
+### GET ALL EVENTS
+GET http://localhost:4000/api/events?search=Trka%20Beljanica%202&page=1&size=1
+Content-Type: application/json
+
+### DELETE EVENT
+DELETE http://localhost:4000/api/events/6650ee922eb13746cac5f27c
+Content-Type: application/json
+
+### UPDATE EVENT
+PUT http://localhost:4000/api/events/6650d9b0973a0dd84548edb1
+Content-Type: application/json
+{
+    "name": "Trka Beljanica 3",
+    "image": "Slika 3",
+    "banner": "Banner 3",
+    "date": "2023-08-01T00:00:00.000Z",
+    "price": "722",
+    "info": "Info Info Info 3",
+    "userId": "664f3190ff9ad4efb30ef0d6"
+}
