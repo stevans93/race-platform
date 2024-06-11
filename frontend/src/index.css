@@ -9,6 +9,10 @@
 }
 
 .bg-color {
-  background-color: white !important;
+  background: transparent linear-gradient(180deg, #0A85D5 0%, #0E4BA2 100%) 0% 0% no-repeat padding-box;
   z-index: 100;
+}
+
+.content-wrapper {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1), 0px -2px 4px rgba(0, 0, 0, 0.1), 2px 0px 4px rgba(0, 0, 0, 0.1), -2px 0px 4px rgba(0, 0, 0, 0.1);
 }
