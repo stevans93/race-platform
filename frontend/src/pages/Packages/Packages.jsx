@@ -7,7 +7,8 @@ const Packages = () => {
     <PageWrapper>
         <PageHeading />
         <ContentWrapper>
-            <h1>Packages</h1>
+            <h1 className="text-[22px]">Packages</h1>
+            <hr className="border border-1"/>
         </ContentWrapper>
     </PageWrapper>
   )

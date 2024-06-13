@@ -8,8 +8,8 @@ export default {
     extend: {
       colors: {
         main: '#FFFFFF',
-        primary: '#0E4BA2',
-        secondary: '',
+        primary: '#BAE3DB',
+        secondary: '#5d837b',
         warning: '#F0CA43',
         danger: '#EE4444',
       },

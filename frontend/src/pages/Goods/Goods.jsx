@@ -7,7 +7,8 @@ const Goods = () => {
     <PageWrapper>
         <PageHeading />
         <ContentWrapper>
-            <h1>Goods</h1>
+            <h1 className="text-[22px]">Goods</h1>
+            <hr className="border border-1"/>
         </ContentWrapper>
     </PageWrapper>
   )
