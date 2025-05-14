@@ -2,38 +2,58 @@ import ContentWrapper from "../../components/ContentWrapper/ContentWrapper";
 import PageHeading from "../../components/PageHeading/PageHeading";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import Table from "../../components/Table/Table";
+import Loader from "../../components/Loader/Loader";
+import AddEventButton from "../../components/AddEventButton/AddEventButton";
+import ErrorPage from "../ErrorPage/ErrorPage";
+import Modal from "../../components/Modal/Modal";
+import Event from "../Event/Event";
+import DeleteForm from "../../components/DeleteForm/DeleteForm";
+import EditEventForm from "../../components/EditEventForm/EditEventForm";
+import AddEventForm from "../../components/AddEventForm/AddEventForm";
+import useEventModals from "../../hooks/useEventModals";
+import DashboardHeading from "../../components/DashboardHeading/DashboardHeading";
 
 const Events = () => {
-  const eventsHeaders = {
-    name: 'Name',
-    date: 'Date',
-    price: 'Price',
-    createdAt: 'Created At',
-    updateAt: 'Update At',
-    actions: '',
-  };
+  const title = 'Events';
 
-  const data = [
-    {
-      name: 'Beljanica',
-      image: 'Image',
-      banner: 'Banner',
-      date: '2024-05-22T11:57:19.274+00:00',
-      price: 70,
-      info: 'Info info info',
-      createdAt: '2024-05-22T11:57:19.274+00:00',
-      updateAt: '2024-05-22T11:57:19.274+00:00',
-      actions: (<div><a className="border border-2 border-primary px-4 py-1 rounded-lg hover:bg-primary text-secondary font-medium">Details</a></div>)
-    }
-  ];
+  const {
+    isOpen,
+    setIsOpen,
+    modalTitle, 
+    selectedEvent, 
+    eventsHeaders,
+    isLoading,
+    isError,
+    error,
+    eventsData,
+    handleAddEventClick,
+    handleCreateEvent,
+    handleDeleteEvent,
+    handleEditEvent,
+  } = useEventModals();
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (isError) {
+    return <ErrorPage error={error}/>;
+  }
 
   return (
     <PageWrapper>
-        <PageHeading />
+        <PageHeading buttons={<AddEventButton onClick={handleAddEventClick} />} showSearch />
         <ContentWrapper>
-            <h1 className="text-[22px]">Events</h1>
-            <hr className="border border-1"/>
-            <Table headers={eventsHeaders} data={data} />
+            <DashboardHeading title={title} />
+
+            <Table headers={eventsHeaders} data={eventsData} />
+
+            <Modal title={modalTitle} isOpen={isOpen} onClose={() => setIsOpen(false)}>
+              {modalTitle === 'Add Event' ? ( <AddEventForm onSave={handleCreateEvent} /> ) : null}
+              {modalTitle === 'Edit Event' && selectedEvent ? ( <EditEventForm event={selectedEvent} onSave={handleEditEvent} /> ) : null}
+              {modalTitle === 'View Event' && selectedEvent ? ( <Event event={selectedEvent} /> ) : null}
+              {modalTitle === 'Delete Event' && selectedEvent ? ( <DeleteForm title={'Event'} info={'Event'} closeModal={() => setIsOpen(false)} deleteFn={handleDeleteEvent} /> ) : null}
+            </Modal>
         </ContentWrapper>
     </PageWrapper>
   )

@@ -5,6 +5,7 @@ Content-Type: application/json
 ### GET ALL USERS
 GET http://localhost:4000/api/users
 Content-Type: application/json
+Authorization:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjdkNjMyOTAyYTEyMjdlZDU0OTU2OGUiLCJmaXJzdE5hbWUiOiJTdGV2YW4xMSIsImxhc3ROYW1lIjoiU3RldmFub3ZpYzExIiwiZW1haWwiOiJzdGV2YW5zOTMxMUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTcxOTUwNDczOCwiZXhwIjoxNzE5NTkxMTM4fQ.ApDZUjsoV0E7IRa0uOHYg0ezP2Bw_RT87upbkuzWRxc"
 
 ### DELETE USER
 DELETE http://localhost:4000/api/users/664f31beff9ad4efb30ef0df
@@ -19,4 +20,15 @@ Authorization:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjRkZGQ5ZmQ1MTIx
     "lastName": "Stevanovic5",
     "email": "stevans935@gmail.com",
     "password": "312392"
+}
+
+### CREATE USER
+POST http://localhost:4000/api/users/create
+Content-Type: application/json
+{
+  "firstName": "Stevan333",
+  "lastName": "Stevanovic333",
+  "email": "stevans93333@gmail.com",
+  "password": "312392",
+  "phone": "312392"
 }

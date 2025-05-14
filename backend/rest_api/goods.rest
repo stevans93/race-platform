@@ -1,0 +1,26 @@
+### CREATE GOODS
+POST http://localhost:4000/api/goods/create
+Content-Type: application/json
+{
+    "name": "Patike",
+    "description": "Patike",
+    "quantity": 100
+}
+
+### GET ALL GOODS
+GET http://localhost:4000/api/goods
+
+### GET GOODS BY ID
+GET http://localhost:4000/api/goods/668984f105d02bb7e3fdde93
+
+### UPDATE GOODS
+PUT http://localhost:4000/api/goods/668984f105d02bb7e3fdde93
+Content-Type: application/json
+{
+    "name": "Patike2",
+    "description": "Patike2",
+    "quantity": 100
+}
+
+### DELETE GOODS
+DELETE http://localhost:4000/api/goods/66899a920585a0e267f31f58

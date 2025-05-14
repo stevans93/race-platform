@@ -7,6 +7,8 @@ const { createToken } = require("../../utils/jwt");
 const login = async (req, res) => {
     const { email, password } = req.body;
 
+    console.log(email);
+
     let user = await UsersModel.findOne({ email}, null, { lean: true });
 
     if(!user) {

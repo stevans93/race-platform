@@ -12,6 +12,7 @@ export default {
         secondary: '#5d837b',
         warning: '#F0CA43',
         danger: '#EE4444',
+        borderColor: '#EDF1F7',
       },
     },
   },

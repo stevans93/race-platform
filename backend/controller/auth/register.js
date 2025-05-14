@@ -4,7 +4,6 @@ const { BadRequest } = require("../../utils/errors");
 const bcryptFunctions = require("../../utils/bcryptFunctions");
 
 const register = async (req, res) => {
-    console.log(req.body);
     const { email, password } = req.body;
     
     const body = req.body;

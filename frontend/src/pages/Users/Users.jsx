@@ -2,80 +2,59 @@ import ContentWrapper from "../../components/ContentWrapper/ContentWrapper";
 import PageHeading from "../../components/PageHeading/PageHeading";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import Table from "../../components/Table/Table";
-import { FiEdit } from 'react-icons/fi'
-import { RiDeleteBin6Line } from 'react-icons/ri'
+import Loader from "../../components/Loader/Loader";
+import AddUserButton from "../../components/AddUserButton/AddUserButton";
+import ErrorPage from "../ErrorPage/ErrorPage";
+import Modal from "../../components/Modal/Modal";
+import EditUserForm from "../../components/EditUserForm/EditUserForm";
+import ViewUserProfile from "../../components/ViewUserProfile/ViewUserProfile";
+import DeleteForm from "../../components/DeleteForm/DeleteForm";
+import AddUserForm from "../../components/AddUserForm/AddUserForm";
+import useUserModals from "../../hooks/useUserModals";
+import DashboardHeading from "../../components/DashboardHeading/DashboardHeading";
 
 const Users = () => {
-  const usersHeaders = {
-      firstName: 'First Name',
-      lastName: 'Last Name',
-      email: 'Email',
-      password: 'Password',
-      phone: 'Phone Number',
-      role: 'Role',
-      createdAt: 'Created At',
-      updateAt: 'Update At',
-      actions: '',
-  };
+  const title = 'Users';
 
-  const data = [
-    {
-      firstName: 'Stevan',
-      lastName: 'Stevanovic',
-      email: 'stevans93@gmail.com',
-      password: '312392',
-      phone: '062/50-52-70',
-      role: 'user',
-      createdAt: '2024-05-22T11:57:19.274+00:00',
-      updateAt: '2024-05-22T11:57:19.274+00:00',
-      actions: (
-        <div className='flex gap-2'>
-          <FiEdit className='h-5 w-5 cursor-pointer text-secondary'/>
-          <RiDeleteBin6Line className='h-5 w-5 cursor-pointer text-secondary'/>
-        </div>
-      ),
-    },
-    {
-      firstName: 'Stevan2',
-      lastName: 'Stevanovic2',
-      email: 'stevans932@gmail.com',
-      password: '312392',
-      phone: '062/50-52-70',
-      role: 'user',
-      createdAt: '2024-05-22T11:57:19.274+00:00',
-      updateAt: '2024-05-22T11:57:19.274+00:00',
-      actions: (
-        <div className='flex gap-2'>
-          <FiEdit className='h-5 w-5 cursor-pointer text-[#5d837b]'/>
-          <RiDeleteBin6Line className='h-5 w-5 cursor-pointer text-[#5d837b]'/>
-        </div>
-      ),
-    },
-    {
-      firstName: 'Stevan3',
-      lastName: 'Stevanovic3',
-      email: 'stevans933@gmail.com',
-      password: '312392',
-      phone: '062/50-52-70',
-      role: 'user',
-      createdAt: '2024-05-22T11:57:19.274+00:00',
-      updateAt: '2024-05-22T11:57:19.274+00:00',
-      actions: (
-        <div className='flex gap-2'>
-          <FiEdit className='h-5 w-5 cursor-pointer text-[#5d837b]'/>
-          <RiDeleteBin6Line className='h-5 w-5 cursor-pointer text-[#5d837b]'/>
-        </div>
-      ),
-    },
-  ];
+    const {
+      isOpen,
+      setIsOpen,
+      modalTitle,
+      usersData,
+      usersHeaders,
+      isLoading,
+      isError,
+      error,
+      handleAddUserClick,
+      handleDeleteUser,
+      selectedUser,
+      handleEditUser,
+      handleCreateUser,
+    } = useUserModals();
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (isError) {
+    return <ErrorPage error={error}/>;
+  }
 
   return (
     <PageWrapper>
-        <PageHeading />
+        <PageHeading buttons={<AddUserButton onClick={handleAddUserClick} />} showSearch />
         <ContentWrapper>
-            <h1 className="text-[22px]">Users</h1>
-            <hr className="border border-1"/>
-            <Table headers={usersHeaders} data={data} />
+            <DashboardHeading title={title} />
+            
+            <Table headers={usersHeaders} data={usersData} />
+
+            <Modal title={modalTitle} isOpen={isOpen} onClose={() => setIsOpen(false)}>
+              {modalTitle === 'Edit User' && selectedUser ? ( <EditUserForm user={selectedUser} onSave={handleEditUser}/> ) : null}
+              {modalTitle === 'View User' && selectedUser ? ( <ViewUserProfile user={selectedUser} /> ) : null}
+              {modalTitle === 'Delete User' && selectedUser ? ( <DeleteForm title={'User'} info={'User'} closeModal={() => setIsOpen(false)} deleteFn={handleDeleteUser} /> ) : null}
+              {modalTitle === 'Add User' ? ( <AddUserForm onSave={handleCreateUser} /> ) : null}
+            </Modal>
+
         </ContentWrapper>
     </PageWrapper>
   )

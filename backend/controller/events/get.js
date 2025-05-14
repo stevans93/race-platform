@@ -12,6 +12,6 @@ const get = async (req, res) => {
     }
 
     res.status(200).json(event);
-}
+};
 
 module.exports = get;

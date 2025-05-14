@@ -2,9 +2,9 @@
 POST http://localhost:4000/api/auth/register
 Content-Type: application/json
 {
-  "firstName": "Stevan",
-  "lastName": "Stevanovic",
-  "email": "stevans93@gmail.com",
+  "firstName": "Stevan9",
+  "lastName": "Stevanovic9",
+  "email": "stevans939@gmail.com",
   "password": "312392"
 }
 
@@ -12,6 +12,6 @@ Content-Type: application/json
 POST http://localhost:4000/api/auth/login
 Content-Type: application/json
 {
-  "email": "stevans932@gmail.com",
+  "email": "stevans9311@gmail.com",
   "password": "312392"
 }

@@ -24,7 +24,8 @@ const Table = (data) => {
     <div className='overflow-x-auto rounded-lg border border-primary'>
         <table className='table w-full'>
             <thead>
-                <tr className="text-[16px]">
+                <tr className="text-[16
+                    px]">
                     {headers}
                 </tr>
             </thead>

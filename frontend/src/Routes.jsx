@@ -11,12 +11,14 @@ import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
 import ResetPassword from './pages/ResetPassword/ResetPassword';
+import SuccessfullySetPassword from './pages/SuccessfullySetPassword/SuccessfullySetPassword';
+import ErrorPage from './pages/ErrorPage/ErrorPage';
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <App />,
-        errorElement: <div>Error 404</div>,
+        errorElement: <ErrorPage />,
         children: [
             {
                 index: true,
@@ -33,6 +35,10 @@ const router = createBrowserRouter([
             {
                 path: 'reset-password',
                 element: <ResetPassword />
+            },
+            {
+                path: 'successfully-set-password',
+                element: <SuccessfullySetPassword />
             },
         ]
     },

@@ -15,4 +15,6 @@ module.exports = {
     passwordIsRequired: 'passwordIsRequired',
     firstNameRequired: 'firstNameRequired',
     lastNameRequired: 'lastNameRequired',
+    goodsNotExists: 'goodsNotExists',
+    goodsNotFound: 'goodsNotFound',
 };

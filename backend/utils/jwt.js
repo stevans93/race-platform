@@ -18,25 +18,32 @@ function createToken(payload) {
 
 const verifyToken = async (req, res, next) => {
   try {
-      const token = req.header('Authorization');
+    const token = req.header('Authorization');
       
-      if (!token) {
-          throw new BadRequest(tokenNotProvided);
-      }
-      
-      const decoded = jwt.verify(token, JWT_KEY);
-      
-      const user = await UsersModel.findById(decoded._id);
-      
-      if (!user) {
-          throw new BadRequest(invalidToken);
-      }
-      
-      req.user = user;
-      
-      next();
+    if (!token) {
+        throw new BadRequest(tokenNotProvided);
+    }
+    
+    const decoded = jwt.verify(token, JWT_KEY);
+    
+    const user = await UsersModel.findById(decoded._id);
+    
+    if (!user) {
+        throw new BadRequest(invalidToken);
+    }
+    
+    req.user = user;
+    
+    next();
   } catch (error) {
+    if (error.name === 'TokenExpiredError') {
       return res.status(401).json({ message: tokenExpired });
+    } else if (error.name === 'JsonWebTokenError') {
+      return res.status(401).json({ message: invalidToken });
+    } else {
+      console.log(error.name);
+      return res.status(401).json({ message: tokenExpired });
+    }
   }
 };
 
